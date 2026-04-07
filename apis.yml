@@ -1,77 +1,81 @@
 aid: capterra
-url: https://raw.githubusercontent.com/api-evangelist/capterra/refs/heads/main/apis.yml
+url: 
+  https://raw.githubusercontent.com/api-evangelist/capterra/refs/heads/main/apis.yml
 apis:
-- aid: capterra:click-report-api
-  name: Capterra Click Report API
-  tags:
-  - Software Reviews
-  - B2B
-  - Advertising
-  - PPC
-  image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
-  baseURL: https://www.capterra.com
-  humanURL: https://www.capterra.com/vp/login
-  properties:
-  - url: https://www.capterra.com/vp/login
-    type: Documentation
-  description: >-
-    The Capterra Click Report API allows software vendors to programmatically
-    retrieve historical click data from their Capterra pay-per-click (PPC)
-    advertising campaigns. Vendors can access click metrics across different
-    software categories, countries, and distribution channels. The API uses
-    API key authentication obtained through Capterra account managers and
-    returns data across all Gartner Digital Markets accounts mapped to the
-    vendor, covering Capterra, GetApp, and Software Advice. Click data is
-    finalized at month-end invoice time. Access to API documentation is
-    available through the vendor portal under PPC Bidding settings.
+  - aid: capterra:click-report-api
+    name: Capterra Click Report API
+    tags:
+      - Software Reviews
+      - B2B
+      - Advertising
+      - PPC
+    image: 
+      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    baseURL: https://www.capterra.com
+    humanURL: https://www.capterra.com/vp/login
+    properties:
+      - url: https://www.capterra.com/vp/login
+        type: Documentation
+    description: >-
+      The Capterra Click Report API allows software vendors to programmatically retrieve
+      historical click data from their Capterra pay-per-click (PPC) advertising campaigns.
+      Vendors can access click metrics across different software categories, countries,
+      and distribution channels. The API uses API key authentication obtained through
+      Capterra account managers and returns data across all Gartner Digital Markets
+      accounts mapped to the vendor, covering Capterra, GetApp, and Software Advice.
 name: Capterra
 tags:
-- Software Reviews
-- B2B
-- Software Comparison
+  - Software Reviews
+  - B2B
+  - Software Comparison
 type: Index
-image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: 
+  https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 common:
-- url: https://www.capterra.com/
-  name: Capterra Website
-  type: Website
-- url: https://www.capterra.com/vendors/
-  name: For Vendors
-  type: Portal
-- url: https://www.capterra.com/vp/login
-  name: Vendor Login
-  type: Login
-- url: https://www.capterra.com/vendors/sign-up
-  name: Vendor Sign Up
-  type: SignUp
-- url: https://www.capterra.com/resources/
-  name: Blog
-  type: Blog
-- url: https://www.capterra.com/legal/ppc-service-description/
-  name: PPC Service Description
-  type: TermsOfService
-- url: https://www.capterra.com/legal/best-of-badges-methodologies_lessprioritymarkets/
-  name: Best Of Badges Methodology
-  type: Documentation
-- url: https://www.capterra.com/privacy-policy/
-  name: Privacy Policy
-  type: PrivacyPolicy
-- url: https://www.capterra.com/terms-of-use/
-  name: Terms of Use
-  type: TermsOfService
-- url: https://digitalmarkets.gartner.com/login
-  name: Gartner Digital Markets Portal
-  type: Portal
-- url: https://x.com/capterra
-  name: Capterra on X
-  type: X
-- url: https://www.linkedin.com/company/capterra
-  name: Capterra on LinkedIn
-  type: LinkedIn
-- url: https://www.facebook.com/Capterra
-  name: Capterra on Facebook
-  type: Facebook
+  - url: https://www.capterra.com/
+    name: Capterra Website
+    type: Website
+  - url: https://www.capterra.com/vendors/
+    name: For Vendors
+    type: Portal
+  - url: https://www.capterra.com/vp/login
+    name: Vendor Login
+    type: Login
+  - url: https://www.capterra.com/vendors/sign-up
+    name: Vendor Sign Up
+    type: SignUp
+  - url: https://www.capterra.com/resources/
+    name: Blog
+    type: Blog
+  - url: https://www.capterra.com/legal/ppc-service-description/
+    name: PPC Service Description
+    type: TermsOfService
+  - url: 
+      https://www.capterra.com/legal/best-of-badges-methodologies_lessprioritymarkets/
+    name: Best Of Badges Methodology
+    type: Documentation
+  - url: https://www.capterra.com/privacy-policy/
+    name: Privacy Policy
+    type: PrivacyPolicy
+  - url: https://www.capterra.com/terms-of-use/
+    name: Terms of Use
+    type: TermsOfService
+  - url: https://digitalmarkets.gartner.com/login
+    name: Gartner Digital Markets Portal
+    type: Portal
+  - url: https://x.com/capterra
+    name: Capterra on X
+    type: X
+  - url: https://www.linkedin.com/company/capterra
+    name: Capterra on LinkedIn
+    type: LinkedIn
+  - url: https://www.facebook.com/Capterra
+    name: Capterra on Facebook
+    type: Facebook
 created: '2026-03-24'
 modified: '2026-03-24'
 specificationVersion: '0.19'
+description: >-
+  Capterra is a free online marketplace and review platform that helps businesses
+  discover, compare, and select software solutions across hundreds of software categories.
