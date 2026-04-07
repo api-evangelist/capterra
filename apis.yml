@@ -1,16 +1,14 @@
 aid: capterra
-url: 
-  https://raw.githubusercontent.com/api-evangelist/capterra/refs/heads/main/apis.yml
+url: https://raw.githubusercontent.com/api-evangelist/capterra/refs/heads/main/apis.yml
 apis:
   - aid: capterra:click-report-api
     name: Capterra Click Report API
     tags:
-      - Software Reviews
-      - B2B
       - Advertising
+      - B2B
       - PPC
-    image: 
-      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+      - Software Reviews
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://www.capterra.com
     humanURL: https://www.capterra.com/vp/login
     properties:
@@ -25,12 +23,11 @@ apis:
       accounts mapped to the vendor, covering Capterra, GetApp, and Software Advice.
 name: Capterra
 tags:
-  - Software Reviews
   - B2B
   - Software Comparison
+  - Software Reviews
 type: Index
-image: 
-  https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 common:
   - url: https://www.capterra.com/
@@ -51,8 +48,7 @@ common:
   - url: https://www.capterra.com/legal/ppc-service-description/
     name: PPC Service Description
     type: TermsOfService
-  - url: 
-      https://www.capterra.com/legal/best-of-badges-methodologies_lessprioritymarkets/
+  - url: https://www.capterra.com/legal/best-of-badges-methodologies_lessprioritymarkets/
     name: Best Of Badges Methodology
     type: Documentation
   - url: https://www.capterra.com/privacy-policy/
