@@ -13,7 +13,7 @@ description: >-
   Click Report API allows vendors to programmatically retrieve
   historical click performance data.
 type: Index
-x-type: company
+kind: company
 position: Consumer
 access: 3rd-Party
 image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
@@ -78,17 +78,17 @@ common:
     url: https://www.capterra.com/vendors/
   - type: Login
     url: https://www.capterra.com/vp/login
-  - type: Sign Up
+  - type: SignUp
     url: https://www.capterra.com/vendors/sign-up
   - type: Blog
     url: https://www.capterra.com/resources/
   - type: Documentation
     url: https://www.capterra.com/legal/best-of-badges-methodologies_lessprioritymarkets/
-  - type: Terms of Service
+  - type: TermsOfService
     url: https://www.capterra.com/terms-of-use/
   - type: PPC Terms
     url: https://www.capterra.com/legal/ppc-service-description/
-  - type: Privacy Policy
+  - type: PrivacyPolicy
     url: https://www.capterra.com/privacy-policy/
   - type: Gartner Digital Markets Portal
     url: https://digitalmarkets.gartner.com/login
