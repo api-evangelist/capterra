@@ -80,7 +80,7 @@ common:
     url: https://www.capterra.com/vendors/
   - type: Login
     url: https://www.capterra.com/vp/login
-  - type: SignUp
+  - type: Signup
     url: https://www.capterra.com/vendors/sign-up
   - type: Blog
     url: https://www.capterra.com/resources/
