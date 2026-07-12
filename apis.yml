@@ -72,6 +72,10 @@ apis:
       - Automated cost-per-lead and ROI calculations
       - Detecting anomalies and trends in category-level clicks
 common:
+  - type: VulnerabilityDisclosure
+    url: security/capterra-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/capterra-domain-security.yml
   - type: GitHubOrganization
     url: https://github.com/capterra
   - type: Website
