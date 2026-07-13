@@ -2,13 +2,10 @@
   "repo": "capterra",
   "feeds": [
     {
-      "source": "https://www.capterra.com/resources/",
-      "feed_url": "",
-      "saved": 4,
-      "method": "agent-scrape"
+      "source": "https://www.capterra.com/vendors/sign-up",
+      "error": "HTTPError"
     }
   ],
-  "fetched": "2026-06-27T12:30:20Z",
-  "post_count": 7,
-  "agent_pulled": "2026-06-27"
+  "fetched": "2026-07-11T11:50:51Z",
+  "post_count": 10
 }
