@@ -1,0 +1,78 @@
+generated: '2026-08-12'
+method: probed
+source: >-
+  https://public-api.capterra.com/v1/clicks (live unauthenticated probe,
+  2026-08-12) plus the publicly documented credential-issuance path
+description: >-
+  Authentication profile for the Capterra Click Report API. Capterra publishes no
+  OpenAPI and no public authentication reference — the API documentation lives
+  inside the vendor console behind a login (PPC Bidding -> API Documentation), so
+  this profile is built from a live unauthenticated probe of the API host plus the
+  publicly stated credential-issuance process. Nothing here is inferred from a
+  specification, because there is none to read.
+provider: Capterra
+providerId: capterra
+apis:
+  - name: Capterra Click Report API
+    base_url: https://public-api.capterra.com/v1
+    schemes:
+      - id: api_key
+        type: apiKey
+        name: api_key
+        confirmed: true
+        transport: unverified
+        note: >-
+          The credential is a vendor-issued API key. The parameter name `api_key`
+          is the name Capterra's own gated Swagger console uses (per the
+          "Authorize" flow described by integration partners), but the transport —
+          query parameter vs. header — could NOT be verified anonymously: a request
+          carrying a syntactically well-formed but invalid value in `?api_key=`
+          returns exactly the same 401 body as a request with no credential at all,
+          so the probe cannot distinguish "rejected key" from "no key". Recorded as
+          unverified rather than guessed.
+    issuance:
+      self_service: false
+      method: account-manager
+      note: >-
+        API keys are not self-service. A vendor must be enrolled in the
+        Capterra / G2 Digital Markets pay-per-click program and request the key
+        from their assigned account manager; the contact is surfaced inside the
+        vendor console under PPC Bidding -> API Documentation.
+      documented_at: vendor console (login required)
+    oauth2: false
+    openid_connect: false
+    mutual_tls: false
+    scopes: none
+    scope_note: >-
+      Key authentication only — there is no OAuth surface, therefore no scope
+      model. A key is bound to a vendor and returns data for every Gartner Digital
+      Markets / G2 Digital Markets account mapped to that vendor (Capterra, GetApp,
+      Software Advice).
+evidence:
+  - url: https://public-api.capterra.com/v1/clicks
+    method: GET
+    http_status: 401
+    content_type: application/json; charset=utf-8
+    body: '{"error":"Unauthorized"}'
+    fetched: '2026-08-12'
+    note: >-
+      Live, first-party API host on capterra.com. The 401 is the proof the endpoint
+      exists and is credential-gated; sibling paths (/v1/click-report,
+      /v1/reports/clicks, /v1/health) return 404, and POST to /v1/clicks returns
+      404, so GET is the only routed method on this path.
+  - url: https://public-api.capterra.com/v1/clicks?api_key=REDACTED_TEST
+    method: GET
+    http_status: 401
+    fetched: '2026-08-12'
+    note: Invalid credential returns the same envelope; transport not distinguishable.
+  - url: https://www.capterra.com/vp/login
+    http_status: 404
+    fetched: '2026-08-12'
+    note: >-
+      The historically documented vendor-portal login — the door to the API
+      documentation — now 404s. Vendor login moved to
+      https://app.g2digitalmarkets.com/ after G2 acquired Capterra from Gartner
+      (closed 2026-02-05).
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

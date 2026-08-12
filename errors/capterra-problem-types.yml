@@ -1,0 +1,71 @@
+generated: '2026-08-12'
+method: probed
+source: >-
+  live unauthenticated probes of https://public-api.capterra.com/v1/* on
+  2026-08-12
+description: >-
+  Error catalog for the Capterra Click Report API. Capterra publishes no OpenAPI
+  and no public error reference, so this catalog records only error responses that
+  were OBSERVED on the live API host. It is deliberately incomplete: the
+  authenticated error surface (validation errors, quota errors, date-range errors)
+  cannot be reached without a vendor-issued key and is NOT guessed at here.
+provider: Capterra
+providerId: capterra
+api: Capterra Click Report API
+base_url: https://public-api.capterra.com/v1
+format: proprietary
+rfc9457: false
+envelope:
+  shape: '{"error": "<string>"}'
+  media_type: application/json; charset=utf-8
+  note: >-
+    A single flat `error` string. Not RFC 9457 problem+json — there is no `type`,
+    `title`, `status`, `detail` or `instance` member, and no machine-readable error
+    code, so an agent cannot branch on anything more specific than the HTTP status.
+correlation:
+  header: x-request-id
+  note: >-
+    Every response carries an `x-request-id` UUID (and an `x-runtime` timing
+    value). This is the only support-correlation handle the API exposes; it is not
+    documented publicly.
+problem_types:
+  - status: 401
+    code: null
+    title: Unauthorized
+    body: '{"error":"Unauthorized"}'
+    observed: true
+    observed_at: '2026-08-12'
+    observed_on: GET /v1/clicks
+    meaning: >-
+      No credential, or a credential the API did not accept. The two cases are
+      indistinguishable — an invalid key produces a byte-identical response to no
+      key at all.
+    remediation: >-
+      Obtain an API key from your Capterra / G2 Digital Markets account manager
+      (vendor console -> PPC Bidding -> API Documentation) and retry.
+    retryable: false
+  - status: 404
+    code: null
+    title: Not Found
+    body: 'Not Found'
+    media_type: text/plain
+    observed: true
+    observed_at: '2026-08-12'
+    observed_on: >-
+      GET /v1/click-report, /v1/reports/clicks, /v1/health, /v1/status; POST
+      /v1/clicks
+    meaning: >-
+      Unrouted path or unrouted method. Note the inconsistency: 404 under /v1/ is a
+      9-byte text/plain body, while 404 at the host root is an empty text/plain
+      body — a different envelope from the JSON used for 401.
+    remediation: Check the path and the HTTP method against the gated API documentation.
+    retryable: false
+not_observed:
+  note: >-
+    The following are conventional for a reporting API but were NOT observed and are
+    therefore NOT recorded as Capterra's: 400 validation, 403 forbidden, 422
+    unprocessable, 429 rate limited, 5xx. No rate-limit headers appeared on any
+    anonymous response.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

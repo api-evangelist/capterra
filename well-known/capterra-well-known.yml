@@ -1,0 +1,66 @@
+generated: '2026-08-12'
+method: probed
+source: live GET probes of every host named in apis.yml plus the discovered API host
+description: >-
+  Well-known discovery probe for the Capterra surface. Three hosts were probed:
+  the public website (www.capterra.com), the API host discovered during contract
+  discovery (public-api.capterra.com), and the vendor console that the Capterra
+  vendor links now redirect to after the G2 acquisition
+  (app.g2digitalmarkets.com / digitalmarkets.gartner.com). Only www.capterra.com
+  serves a real well-known document.
+hosts:
+  - host: https://www.capterra.com
+    role: public website
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        content_type: text/plain; charset=utf-8
+        file: capterra-security.txt
+        note: >-
+          RFC 9116 document. Contact is mailto:security@g2.com and Expires is
+          2027-04-27T12:00:00Z — the G2 contact reflects the February 2026
+          acquisition of Capterra from Gartner by G2.
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+  - host: https://public-api.capterra.com
+    role: API host (Click Report API, discovered by probe)
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+  - host: https://digitalmarkets.gartner.com
+    role: legacy vendor console (302s to app.g2digitalmarkets.com/login)
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        valid: false
+        note: >-
+          SOFT 200 — rejected. This host is a single-page-app catch-all that
+          answers HTTP 200 with the identical 24,097-byte HTML shell for every
+          path, including /this-path-does-not-exist-12345. No well-known document
+          is actually served. Same shell is served by app.g2digitalmarkets.com.
+      - path: /.well-known/agent-card.json
+        status: 200
+        valid: false
+        note: SPA catch-all HTML, not an agent card. Rejected.
+summary:
+  real_documents: 1
+  types_found:
+    - security.txt
+  soft_200_hosts:
+    - digitalmarkets.gartner.com
+    - app.g2digitalmarkets.com
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

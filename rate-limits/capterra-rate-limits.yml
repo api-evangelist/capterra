@@ -4,7 +4,54 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Capterra
 providerId: capterra
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-08-12'
+generated: '2026-08-12'
+method: searched
+source: >-
+  https://public-api.capterra.com/v1/clicks (live response headers, 2026-08-12);
+  capterra.com and g2digitalmarkets.com vendor documentation surface
+# 2026-08-12 REWRITE. The previous contents of this file were a bulk-sweep scaffold
+# (free/professional/enterprise tiers at 10/100/1000 rpm with monthly quotas of
+# 1,000/100,000/unlimited). Capterra publishes none of those numbers and never has —
+# they were placeholder defaults, not provider data, and they are removed here rather
+# than carried forward. An honest zero is the measurement.
+description: >-
+  Rate limits for the Capterra Click Report API. Capterra publishes no rate limits.
+  The API reference lives behind the vendor console login, and the live API host
+  returns no rate-limit signaling headers on anonymous responses, so there is
+  nothing to record on either the documented or the observed side.
+limit_count: 0
+limits: []
+headers:
+  observed: []
+  note: >-
+    A live GET to https://public-api.capterra.com/v1/clicks returns 401 with the
+    following headers and NO rate-limit family at all: date, content-type,
+    content-length, x-frame-options, x-xss-protection, x-content-type-options,
+    x-permitted-cross-domain-policies, referrer-policy, vary, cache-control,
+    x-request-id, x-runtime. No X-RateLimit-Limit / X-RateLimit-Remaining /
+    X-RateLimit-Reset, no RateLimit-Policy, no Retry-After.
+responseCodes:
+  observed:
+    - status: 401
+      meaning: unauthorized (no or invalid API key)
+    - status: 404
+      meaning: unrouted path or method
+  throttled: unknown
+  note: >-
+    A 429 was never observed and is not documented. Whether the API throttles at all,
+    and with what status, is unknown to an unauthenticated caller.
+evidence:
+  - url: https://public-api.capterra.com/v1/clicks
+    http_status: 401
+    fetched: '2026-08-12'
+    finding: no rate-limit headers present
+  - url: https://www.capterra.com/vp/login
+    http_status: 404
+    fetched: '2026-08-12'
+    finding: >-
+      the documented route to the API reference (PPC Bidding -> API Documentation)
+      is dead after the G2 acquisition; limits cannot be read from the docs
 tags:
   - Advertising
   - B2B
@@ -17,78 +64,6 @@ tags:
   - Software Comparison
   - Software Reviews
   - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Capterra API surface. Captures per-tier quotas,
-  burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to be replaced
-  with published provider limits.
-headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
-responseCodes:
-  throttled: 429
-  quotaExceeded: 429
-  serviceUnavailable: 503
-limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - Capterra Click Report API
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - Capterra Click Report API
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - Capterra Click Report API
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - Capterra Click Report API
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - Capterra Click Report API
-policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

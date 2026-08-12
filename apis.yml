@@ -3,15 +3,20 @@ url: >-
   https://raw.githubusercontent.com/api-evangelist/capterra/refs/heads/main/apis.yml
 name: Capterra
 description: >-
-  Capterra is a Gartner Digital Markets property and one of the
-  largest software review and comparison marketplaces, helping
-  business buyers discover, research, and select software across
-  hundreds of categories through verified user reviews, feature
-  comparisons, and pricing information. For participating software
-  vendors, Capterra and its sister sites GetApp and Software Advice
-  offer a pay-per-click lead-generation program, and the Capterra
-  Click Report API allows vendors to programmatically retrieve
-  historical click performance data.
+  Capterra is one of the largest software review and comparison
+  marketplaces, helping business buyers discover, research, and
+  select software across hundreds of categories through verified
+  user reviews, feature comparisons, and pricing information.
+  Founded in 1999 and acquired by Gartner in 2015, Capterra was
+  sold to G2 alongside its sister sites GetApp and Software Advice
+  in a deal that closed on 2026-02-05, and the three properties now
+  operate as G2 Digital Markets — the vendor console has moved to
+  app.g2digitalmarkets.com. For participating software vendors the
+  properties run a pay-per-click lead-generation program, and the
+  Capterra Click Report API lets those vendors programmatically
+  retrieve historical click performance data across all mapped
+  accounts. The API is credential-gated and its reference is
+  published only inside the authenticated vendor console.
 type: Index
 kind: company
 accessModel:
@@ -33,6 +38,7 @@ tags:
   - Advertising
   - B2B
   - Click Reporting
+  - G2 Digital Markets
   - Gartner Digital Markets
   - Lead Generation
   - Marketplace
@@ -41,7 +47,7 @@ tags:
   - Software Comparison
   - Software Reviews
 created: '2026-03-24'
-modified: '2026-04-23'
+modified: '2026-08-12'
 specificationVersion: '0.19'
 apis:
   - aid: capterra:click-report-api
@@ -53,23 +59,37 @@ apis:
       can access click metrics across different software categories,
       countries, and distribution channels. The API uses API key
       authentication obtained through Capterra account managers and
-      returns data across all Gartner Digital Markets accounts mapped
-      to the vendor, covering Capterra, GetApp, and Software Advice.
-    humanURL: https://www.capterra.com/vp/login
+      returns data across all Gartner Digital Markets / G2 Digital
+      Markets accounts mapped to the vendor, covering Capterra,
+      GetApp, and Software Advice.
+    humanURL: https://www.capterra.com/vendors/
     tags:
       - Advertising
       - B2B
       - Click Reporting
       - PPC
       - Software Reviews
-    baseURL: https://www.capterra.com
+    baseURL: https://public-api.capterra.com/v1
+    x-base-url-evidence: >-
+      Repaired 2026-08-12. The previous baseURL (https://www.capterra.com) was the
+      marketing host, which repair-api-bases.py flagged as no-usable-base. A live
+      probe found the real first-party API host: GET
+      https://public-api.capterra.com/v1/clicks returns HTTP 401
+      {"error":"Unauthorized"} with x-request-id/x-runtime headers, while sibling
+      paths return 404 — a credential-gated endpoint on Capterra's own domain.
     properties:
-      - type: Documentation
-        url: https://www.capterra.com/vp/login
       - type: Portal
         url: https://www.capterra.com/vendors/
+      - type: Login
+        url: https://app.g2digitalmarkets.com/
       - type: Authentication
-        url: https://www.capterra.com/vp/login
+        url: authentication/capterra-authentication.yml
+      - type: ErrorCatalog
+        url: errors/capterra-problem-types.yml
+      - type: Conventions
+        url: conventions/capterra-conventions.yml
+      - type: RateLimits
+        url: rate-limits/capterra-rate-limits.yml
     x-features:
       - Programmatic retrieval of historical click data for PPC campaigns
       - Click metrics segmented by software category
@@ -86,8 +106,32 @@ apis:
 common:
   - type: VulnerabilityDisclosure
     url: security/capterra-vulnerability-disclosure.yml
+  - type: Security
+    url: security/capterra-vulnerability-disclosure.yml
   - type: DomainSecurity
     url: security/capterra-domain-security.yml
+  - type: WellKnown
+    url: well-known/capterra-well-known.yml
+  - type: SecurityTxt
+    url: well-known/capterra-security.txt
+  - type: LLMsTxt
+    url: llms/capterra-llms.txt
+  - type: Authentication
+    url: authentication/capterra-authentication.yml
+  - type: ErrorCatalog
+    url: errors/capterra-problem-types.yml
+  - type: Conventions
+    url: conventions/capterra-conventions.yml
+  - type: Lifecycle
+    url: lifecycle/capterra-lifecycle.yml
+  - type: Conformance
+    url: conformance/capterra-conformance.yml
+  - type: Plans
+    url: plans/capterra-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/capterra-rate-limits.yml
+  - type: FinOps
+    url: finops/capterra-finops.yml
   - type: GitHubOrganization
     url: https://github.com/capterra
   - type: Website
@@ -95,21 +139,21 @@ common:
   - type: Portal
     url: https://www.capterra.com/vendors/
   - type: Login
-    url: https://www.capterra.com/vp/login
-  - type: Signup
-    url: https://www.capterra.com/vendors/sign-up
+    url: https://app.g2digitalmarkets.com/
+  - type: SignUp
+    url: https://app.g2digitalmarkets.com/get-listed/start
   - type: Blog
     url: https://www.capterra.com/resources/
   - type: Documentation
     url: https://www.capterra.com/legal/best-of-badges-methodologies_lessprioritymarkets/
   - type: TermsOfService
-    url: https://www.capterra.com/terms-of-use/
+    url: https://www.capterra.com/legal/terms-of-use/
   - type: PPC Terms
     url: https://www.capterra.com/legal/ppc-service-description/
   - type: PrivacyPolicy
-    url: https://www.capterra.com/privacy-policy/
-  - type: Gartner Digital Markets Portal
-    url: https://digitalmarkets.gartner.com/login
+    url: https://www.capterra.com/legal/privacy-policy/
+  - type: G2 Digital Markets
+    url: https://www.g2digitalmarkets.com/
   - type: X
     url: https://x.com/capterra
   - type: LinkedIn
@@ -119,3 +163,32 @@ common:
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+x-enrichment:
+  date: '2026-08-12'
+  status: enriched
+  artifacts_added: 8
+  pass: local-v1
+x-coverage:
+  state: covered
+  reason: customer-only-docs
+  detail: >-
+    The Click Report API itself is live and first-party — GET
+    https://public-api.capterra.com/v1/clicks answers 401
+    {"error":"Unauthorized"} — but its reference and Swagger console are published
+    only inside the vendor portal, and the login URL every integration guide names
+    (https://www.capterra.com/vp/login) now 404s after G2 acquired Capterra from
+    Gartner on 2026-02-05; vendor access moved to app.g2digitalmarkets.com. Real
+    public artifacts were still harvested: a verbatim llms.txt and security.txt, the
+    repaired API base URL, and an error envelope observed on the wire.
+  evidence:
+    - url: https://public-api.capterra.com/v1/clicks
+      status: 401
+    - url: https://www.capterra.com/llms.txt
+      status: 200
+    - url: https://www.capterra.com/.well-known/security.txt
+      status: 200
+    - url: https://www.capterra.com/vp/login
+      status: 404
+    - url: https://digitalmarkets.gartner.com/insights/api
+      status: 200
+  checked: '2026-08-12'

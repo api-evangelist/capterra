@@ -1,0 +1,132 @@
+generated: '2026-08-12'
+method: probed
+source: >-
+  live probes of capterra.com, public-api.capterra.com and trust.g2.com on
+  2026-08-12
+description: >-
+  Standards conformance assertions for the Capterra surface. Every entry is
+  evidenced by something observed on the wire; where a standard could not be
+  evaluated without a vendor credential, `conforms` is null rather than false, so an
+  unmeasurable surface is not scored as a failing one.
+provider: Capterra
+providerId: capterra
+standards:
+  - id: rfc9116
+    name: security.txt
+    conforms: true
+    evidence: >-
+      https://www.capterra.com/.well-known/security.txt returns 200 text/plain with
+      Canonical, Contact (mailto:security@g2.com), Expires (2027-04-27T12:00:00Z)
+      and Preferred-Languages fields. Saved verbatim to
+      well-known/capterra-security.txt.
+  - id: llmstxt
+    name: llms.txt
+    conforms: true
+    evidence: >-
+      https://www.capterra.com/llms.txt returns 200 text/markdown. Saved verbatim to
+      llms/capterra-llms.txt. See the agent_surface note below — it is served only to
+      AI-crawler user agents.
+  - id: rfc9457
+    name: Problem Details for HTTP APIs
+    conforms: false
+    evidence: >-
+      The API error envelope observed on https://public-api.capterra.com/v1/clicks
+      is a flat {"error":"Unauthorized"} with content-type application/json — no
+      application/problem+json, no type/title/status/detail/instance members.
+  - id: oauth2
+    name: OAuth 2.0
+    conforms: false
+    evidence: >-
+      No OAuth surface. /.well-known/oauth-authorization-server 404s on
+      www.capterra.com and public-api.capterra.com. Authentication is a
+      vendor-issued API key (authentication/capterra-authentication.yml).
+  - id: oidc
+    name: OpenID Connect Discovery
+    conforms: false
+    evidence: /.well-known/openid-configuration returns 404 on www.capterra.com.
+  - id: rfc8594
+    name: Sunset HTTP Header
+    conforms: false
+    evidence: No Sunset or Deprecation header observed; no deprecation policy published.
+  - id: rfc9110-ratelimit
+    name: RateLimit header fields
+    conforms: false
+    evidence: >-
+      No RateLimit-*, X-RateLimit-* or Retry-After header on any observed response
+      from public-api.capterra.com.
+  - id: openapi
+    name: OpenAPI
+    conforms: false
+    evidence: >-
+      No OpenAPI or Swagger document is published. Probed /openapi.json,
+      /openapi.yaml, /swagger.json, /v1/openapi.json, /v1/swagger.json,
+      /api-docs, /v2/api-docs, /swagger/v1/swagger.json, /swagger-ui.html, /docs,
+      /redoc, /rapidoc, /spec and /openapi against public-api.capterra.com (all 404)
+      and www.capterra.com (all 403/404). The Swagger console that vendors describe
+      is inside the authenticated vendor portal.
+  - id: a2a
+    name: A2A Agent Card
+    conforms: false
+    evidence: >-
+      /.well-known/agent-card.json and /.well-known/agent.json both 404 on
+      www.capterra.com and public-api.capterra.com. The 200s returned by
+      digitalmarkets.gartner.com and app.g2digitalmarkets.com are SPA catch-all HTML
+      (identical 24,097-byte shell for every path) and were rejected. No agent card
+      artifact is written.
+  - id: pagination
+    name: Pagination convention
+    conforms: null
+    evidence: Not observable without a vendor API key; the response body is credential-gated.
+  - id: idempotency
+    name: Idempotency keys
+    conforms: null
+    evidence: >-
+      Read-only reporting surface — GET is the only routed method on /v1/clicks
+      (POST returns 404) — so there is no write path for an idempotency key. No
+      Idempotency pointer is emitted.
+compliance:
+  published_by_provider: false
+  note: >-
+    Capterra publishes no trust center and no certification list of its own —
+    trust.capterra.com does not resolve. G2, which acquired Capterra, GetApp and
+    Software Advice from Gartner on 2026-02-05, operates a trust center at
+    trust.g2.com (200) listing SOC 2 Type 2, SOC 3, CSA STAR, GDPR, CCPA and CPRA.
+    That page does NOT state whether the Capterra / G2 Digital Markets properties
+    are in scope, so those certifications are NOT recorded as Capterra's and no
+    Compliance or TrustCenter pointer is emitted. The only provider-published link
+    between the two is capterra.com's own security.txt, which names
+    security@g2.com as the security contact.
+  probes:
+    - url: https://trust.capterra.com
+      status: 000
+      note: NXDOMAIN
+    - url: https://trust.g2.com/
+      status: 200
+      note: parent-company trust center; Capterra scope unstated
+agent_surface:
+  finding: user-agent-differentiated serving
+  detail: >-
+    www.capterra.com returns HTTP 403 (Akamai-style challenge shell, 5.5KB HTML) to
+    an ordinary browser or curl user agent on essentially every HTML path — including
+    the site root, /vendors/ and /llms.txt — while returning HTTP 200 text/markdown
+    for the same URLs to an AI-crawler user agent (ClaudeBot). robots.txt explicitly
+    Allows GPTBot, ChatGPT-User, OAI-SearchBot, OAI-AdsBot and ClaudeBot, and the
+    llms.txt states this outright: "AI crawlers (GPTBot, ClaudeBot, PerplexityBot,
+    etc.) automatically receive clean Markdown responses optimized for LLM
+    consumption. No special configuration is needed — the User-Agent header is
+    detected automatically."
+  evidence:
+    - url: https://www.capterra.com/llms.txt
+      ua: Chrome desktop
+      status: 403
+    - url: https://www.capterra.com/llms.txt
+      ua: ClaudeBot
+      status: 200
+      content_type: text/markdown; charset=utf-8
+  caveat: >-
+    The markdown twins are not always complete — /legal/ppc-service-description/
+    returns 200 markdown whose body is just the page chrome plus "Loading page...",
+    so the legal/commercial text does not survive the transform.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

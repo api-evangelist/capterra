@@ -1,0 +1,102 @@
+generated: '2026-08-12'
+method: searched
+source: >-
+  live probes of capterra.com, public-api.capterra.com, digitalmarkets.gartner.com
+  and g2digitalmarkets.com on 2026-08-12, plus public reporting of the G2
+  acquisition
+description: >-
+  Lifecycle posture for the Capterra API surface. The headline fact for this
+  provider is an ownership transition, not a version bump: Capterra, GetApp and
+  Software Advice were sold by Gartner to G2 (announced 2026-01-29, closed
+  2026-02-05, ~$110M) and now trade as G2 Digital Markets. The developer-facing
+  consequences are visible on the wire — the historically documented vendor-portal
+  entry point returns 404 and the legacy Gartner console redirects to a G2 login.
+provider: Capterra
+providerId: capterra
+versioning:
+  scheme: uri-path
+  current_version: v1
+  policy_published: false
+  policy_url: null
+  note: >-
+    /v1/ is observable in the API host path. No versioning policy, version-support
+    window, or version-negotiation documentation is published on a page reachable
+    without a vendor login.
+deprecation:
+  policy_published: false
+  policy_url: null
+  sunset_header: false
+  deprecation_header: false
+  rfc8594: false
+  note: >-
+    No deprecation policy, no Sunset or Deprecation response headers observed, and
+    no published notice period. No Deprecation pointer is emitted.
+status_page:
+  published: false
+  url: null
+  probes:
+    - url: https://status.capterra.com
+      status: 000
+      note: host does not resolve (NXDOMAIN)
+    - url: https://trust.capterra.com
+      status: 000
+      note: host does not resolve (NXDOMAIN)
+  note: >-
+    Capterra publishes no status page of its own. G2, the new parent, operates
+    status.g2.com, but it does not state Capterra/GDM scope, so it is not recorded
+    as Capterra's. No StatusPage pointer is emitted.
+sla:
+  published: false
+  note: >-
+    No public SLA. The API is a benefit of the pay-per-click advertising program and
+    its availability commitments, if any, live in the PPC service description /
+    advertiser agreement rather than a developer-facing SLA page.
+ownership:
+  - date: '1999'
+    event: Capterra founded
+  - date: '2015'
+    event: Acquired by Gartner; operated under Gartner Digital Markets alongside GetApp and Software Advice
+  - date: '2026-01-29'
+    event: G2 announces agreement to acquire Capterra, GetApp and Software Advice from Gartner
+  - date: '2026-02-05'
+    event: Acquisition closes (~$110M); properties rebrand under G2 Digital Markets
+observed_transition_effects:
+  - url: https://www.capterra.com/vp/login
+    status: 404
+    fetched: '2026-08-12'
+    note: >-
+      The vendor-portal login that every public integration guide names as the door
+      to the Click Report API documentation is now dead.
+  - url: https://digitalmarkets.gartner.com/insights/api
+    status: 200
+    final_url: https://app.g2digitalmarkets.com/login
+    fetched: '2026-08-12'
+    note: >-
+      The Gartner Digital Markets API insights/release-notes page now redirects to
+      the G2 Digital Markets login.
+  - url: https://www.capterra.com/vendors/
+    status: 200
+    fetched: '2026-08-12'
+    note: >-
+      Vendor page now reads "Capterra, powered by G2 Digital Markets" and sends both
+      sign-up and log-in to app.g2digitalmarkets.com.
+  - url: https://www.capterra.com/.well-known/security.txt
+    status: 200
+    fetched: '2026-08-12'
+    note: Security contact is mailto:security@g2.com — the transition reflected in the RFC 9116 document.
+  - url: https://public-api.capterra.com/v1/clicks
+    status: 401
+    fetched: '2026-08-12'
+    note: >-
+      The API host itself survived the transition on the capterra.com domain and is
+      still live and credential-gated.
+changelog:
+  published: false
+  url: null
+  note: >-
+    Release notes for the API were historically published at
+    digitalmarkets.gartner.com/insights/api; that URL now redirects to a login, so
+    the changelog is no longer publicly readable. No ChangeLog pointer is emitted.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

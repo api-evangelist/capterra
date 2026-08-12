@@ -1,0 +1,92 @@
+generated: '2026-08-12'
+method: probed
+source: >-
+  live probes of https://public-api.capterra.com/v1/* on 2026-08-12; cross-linked
+  to authentication/capterra-authentication.yml and errors/capterra-problem-types.yml
+description: >-
+  Cross-cutting runtime semantics for the Capterra Click Report API, assembled from
+  what a live unauthenticated caller can observe. Capterra publishes no OpenAPI and
+  no public developer reference — the API documentation sits behind the vendor
+  console login — so every field below is either OBSERVED on the wire or explicitly
+  marked unknown. Nothing is filled in from convention.
+provider: Capterra
+providerId: capterra
+api: Capterra Click Report API
+base_url: https://public-api.capterra.com/v1
+auth:
+  style: api-key
+  detail: authentication/capterra-authentication.yml
+  observed: 401 on GET /v1/clicks without a credential
+versioning:
+  style: uri-path
+  current: v1
+  observed: true
+  note: >-
+    The version is carried in the path segment (/v1/). No version header, no
+    date-based version, and no published version-negotiation policy were observed.
+idempotency:
+  supported: unknown
+  header: null
+  note: >-
+    NOT SUPPORTED AS FAR AS CAN BE OBSERVED. This is a read-only reporting API —
+    GET is the only method routed on /v1/clicks (POST returns 404) — so there is no
+    write surface for an idempotency key to protect. No Idempotency-Key header is
+    documented and none could be observed. No Idempotency pointer is emitted for
+    this provider.
+pagination:
+  style: unknown
+  note: >-
+    Cannot be observed anonymously; the response body is only reachable with a
+    vendor key. Not guessed.
+filtering:
+  documented_dimensions:
+    - software category
+    - country
+    - distribution channel (Capterra / GetApp / Software Advice)
+  note: >-
+    These are the segmentation dimensions Capterra describes for the click report in
+    public vendor-facing material. The actual query-parameter names are inside the
+    gated documentation and are not recorded here.
+request_id:
+  supported: true
+  header: x-request-id
+  format: UUID v4
+  observed: true
+  note: Present on 401 and 404 responses alike; the only correlation handle exposed.
+timing:
+  header: x-runtime
+  observed: true
+  note: >-
+    Server-side processing time in seconds. A Rails-family signature; not a
+    documented contract, but present on every response.
+errors:
+  envelope: '{"error": "<string>"}'
+  rfc9457: false
+  detail: errors/capterra-problem-types.yml
+rate_limit_signaling:
+  headers_observed: []
+  note: >-
+    No X-RateLimit-*, RateLimit-* or Retry-After header appeared on any anonymous
+    response. See rate-limits/capterra-rate-limits.yml — no published limits.
+content_negotiation:
+  response_media_type: application/json; charset=utf-8
+  vary: Accept, Origin
+  observed: true
+caching:
+  cache_control: no-cache
+  observed: true
+security_headers:
+  x-frame-options: SAMEORIGIN
+  x-content-type-options: nosniff
+  referrer-policy: strict-origin-when-cross-origin
+  x-permitted-cross-domain-policies: none
+  observed: true
+data_freshness:
+  note: >-
+    Vendor-facing material describes the click dataset as refreshed once daily in the
+    early morning US Eastern window. Capterra does not publish this on a page reachable
+    without a login, so it is recorded as reported-not-verified.
+  verified: false
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
