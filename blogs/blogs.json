@@ -2,10 +2,13 @@
   "repo": "capterra",
   "feeds": [
     {
-      "source": "https://www.capterra.com/vendors/sign-up",
-      "error": "HTTPError"
+      "source": "https://app.g2digitalmarkets.com/get-listed/start",
+      "feed_url": "https://app.g2digitalmarkets.com/get-listed/start",
+      "title": "",
+      "saved": 0,
+      "method": "none"
     }
   ],
-  "fetched": "2026-08-06T14:08:46Z",
+  "fetched": "2026-08-15T12:22:01Z",
   "post_count": 10
 }
