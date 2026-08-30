@@ -115,6 +115,11 @@ apis:
       - Automated cost-per-lead and ROI calculations
       - Detecting anomalies and trends in category-level clicks
 common:
+  - type: ParentCompany
+    url: https://apis.io/providers/gartner/
+    name: Gartner
+    x-relationship: acquired
+    x-evidence: "Founded in 1999 and acquired by Gartner in 2015, Capterra was sold to G2 alongside its sister sites GetApp and Software Advice in a deal that closed on 2026-02-05, and the three properties now operate as G2 Digital Markets — the vendor cons"
   - type: VulnerabilityDisclosure
     url: security/capterra-vulnerability-disclosure.yml
   - type: Security
