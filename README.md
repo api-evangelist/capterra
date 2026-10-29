@@ -1,4 +1,4 @@
-# Capterra (capterra)
+# Capterra
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,77 +64,109 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Capterra is a Gartner Digital Markets property and one of the largest software review and comparison marketplaces, helping business buyers discover, research, and select software across hundreds of categories through verified user reviews, feature comparisons, and pricing information. For participating software vendors, Capterra and its sister sites GetApp and Software Advice offer a pay-per-click lead-generation program, and the Capterra Click Report API allows vendors to programmatically retrieve historical click performance data.
+Capterra is one of the largest software review and comparison marketplaces, helping business buyers discover, research, and select software across hundreds of categories through verified user reviews, feature comparisons, and pricing information. Founded in 1999 and acquired by Gartner in 2015, Capterra was sold to G2 alongside its sister sites GetApp and Software Advice in a deal that closed on 2026-02-05, and the three properties now operate as G2 Digital Markets — the vendor console has moved to app.g2digitalmarkets.com. For participating software vendors the properties run a pay-per-click lead-generation program, and the Capterra Click Report API lets those vendors programmatically retrieve historical click performance data across all mapped accounts. The API is credential-gated and its reference is published only inside the authenticated vendor console.
 
-**URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/capterra/refs/heads/main/apis.yml)
+**Areas:** Advertising · B2B · Click Reporting · G2 Digital Markets · Gartner Digital Markets · Lead Generation · Marketplace · PPC · Software Advice · Software Comparison · Software Reviews
 
-## Scope
+## Capterra on APIs.io
 
-- **Type:** Index
-- **x-type:** company
-- **Position:** Consumer
-- **Access:** 3rd-Party
+Everything profiled for Capterra is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/capterra/](https://apis.io/providers/capterra/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (1)
 
-- Advertising
-- B2B
-- Click Reporting
-- Gartner Digital Markets
-- Lead Generation
-- Marketplace
-- PPC
-- Software Advice
-- Software Comparison
-- Software Reviews
+- [Capterra Click Report API](https://apis.io/apis/capterra/click-report-api/) — The Capterra Click Report API allows software vendors to programmatically retrieve historical click data from their Capterra pay-per-click (PPC) advertising…
 
-## Overview
+### Published properties
 
-Founded in 1999 and acquired by Gartner in 2015, Capterra hosts millions of verified reviews across thousands of B2B software products. Buyers filter software by features, pricing model, deployment type, and company size. Vendors list products, manage profiles, collect reviews, and participate in Capterra's PPC advertising program to improve visibility in category listings. The platform awards annual Best Of badges to top-rated products. Capterra is part of the Gartner Digital Markets network alongside GetApp and Software Advice.
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Security (3)
 
-### Capterra Click Report API
-The Capterra Click Report API allows software vendors to programmatically retrieve historical click data from their Capterra pay-per-click (PPC) advertising campaigns. Vendors can access click metrics across different software categories, countries, and distribution channels. The API uses API key authentication obtained through Capterra account managers and returns data across all Gartner Digital Markets accounts mapped to the vendor, covering Capterra, GetApp, and Software Advice.
+Authentication, trust centre, and vulnerability disclosure.
 
-**Human URL:** [https://www.capterra.com/vp/login](https://www.capterra.com/vp/login)
+- [Capterra Authentication](https://apis.io/security/capterra/capterra-authentication/)
+- [Capterra Domain Security](https://apis.io/security/capterra/capterra-domain-security/)
+- [Capterra Vulnerability Disclosure](https://apis.io/security/capterra/capterra-vulnerability-disclosure/)
 
-#### Features
+#### Plans and pricing (1)
 
-- Programmatic retrieval of historical click data for PPC campaigns
-- Click metrics segmented by software category
-- Metrics segmented by country and distribution channel
-- Data unified across Capterra, GetApp, and Software Advice
-- API key authentication issued by Capterra account managers
-- Coverage of all Gartner Digital Markets accounts mapped to the vendor
+Published plans, tiers and prices.
 
-#### Use Cases
+- [Capterra Plans Pricing](https://apis.io/plans/capterra/capterra-plans-pricing/)
 
-- Vendor internal PPC reporting and dashboards
-- Attribution analysis across Gartner Digital Markets sites
-- Cross-channel marketing analytics combining Capterra data with CRM
-- Automated cost-per-lead and ROI calculations
-- Detecting anomalies and trends in category-level clicks
+#### Rate limits (1)
 
-## Common Properties
+Published request limits.
+
+- [Capterra Rate Limits](https://apis.io/rate-limits/capterra/capterra-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Capterra Finops](https://apis.io/finops/capterra/capterra-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.capterra.com/)
-- [Portal](https://www.capterra.com/vendors/)
-- [Login](https://www.capterra.com/vp/login)
-- [Sign Up](https://www.capterra.com/vendors/sign-up)
+- [Documentation](https://www.capterra.com/legal/best-of-badges-methodologies_lessprioritymarkets/)
+- [Sign up](https://app.g2digitalmarkets.com/get-listed/start)
 - [Blog](https://www.capterra.com/resources/)
-- [PPC Service Description](https://www.capterra.com/legal/ppc-service-description/)
-- [Best Of Badges Methodology](https://www.capterra.com/legal/best-of-badges-methodologies_lessprioritymarkets/)
-- [Privacy Policy](https://www.capterra.com/privacy-policy/)
-- [Terms of Use](https://www.capterra.com/terms-of-use/)
-- [Gartner Digital Markets Portal](https://digitalmarkets.gartner.com/login)
+- [Terms of service](https://www.capterra.com/legal/terms-of-use/)
+- [Privacy policy](https://www.capterra.com/legal/privacy-policy/)
+- [GitHub](https://github.com/capterra)
 
-## Timestamps
+## API Evangelist rating
 
-- **Created:** 2026-03-24
-- **Modified:** 2026-04-23
+**Kin Score 27.0** — thin · rubric 0.24.0 · scored 2026-10-17
 
-## Maintainers
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 0.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 13.2 |
+| Developer ergonomics | 33.3 |
+| Access clarity | 34.2 |
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Agent readiness 7.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 30.4** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/capterra/](https://apis.io/providers/capterra/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Capterra: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/capterra/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
